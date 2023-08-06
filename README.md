@@ -36,7 +36,7 @@ Sample data is inserted into the table using the 'InsertTable.sql' script.
 5. number of subscribers who have re-subscribed more than once for each product;
 6. subscribers who have re-subscribed a higher version of the product in 2023 - for example Autocad 2022 to Autocad 2023.
 
-## Solutions:
+## Solutions
 The solutions for these questions are provided in individual '.sql' files. 
 The 'updateData.sql' file provides the SQL query to update the contact phone number, along with a solution to optimize the query. 
 The 'Q1.sql' 'Q6.sql' file provides the solution for the question respectively.
@@ -87,19 +87,18 @@ The idx_title, idx_author and idx_isbn are indexes on the title, author and ISBN
 ## Configuration: Replace the values as needed based on your MySQL setup
 In src/main/resources/application.properties, configure the database connection details:
 spring.datasource.url=jdbc:mysql://localhost:3306/bookstore_db
-spring.datasource.username=change
-spring.datasource.password=change
+spring.datasource.username=[CHANGE_YOUR_VALUE]
+spring.datasource.password=[CHANGE_YOUR_VALUE]
 spring.jpa.hibernate.ddl-auto=update
-
-
-## Running the Application
-```
-mvn spring-boot:run
-```
 
 ## Run the unit tests for the project using the following command:
 ```
 mvn test
+```
+
+## Running the Application
+```
+mvn spring-boot:run
 ```
 
 ## API Documentation
