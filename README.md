@@ -38,7 +38,6 @@ The 'updateData.sql' file provides the SQL query to update the contact phone num
 The 'Q1.sql' 'Q6.sql' file provides the solution for the question respectively.
 
 # Java Assignment README
-# Bookstore Inventory System
 
 This is a simple online bookstore inventory system implemented as a microservice using Java and Spring Boot. It interacts with a SQL database to manage inventory of books.
 
@@ -77,7 +76,7 @@ CREATE TABLE books (
 );
 CREATE INDEX idx_title ON books(title);
 CREATE INDEX idx_author ON books(author);
-CREATE INDEX idx_isbn ON books(isbn);```
+CREATE INDEX idx_isbn ON books(isbn);
 ```
 The idx_title, idx_author and idx_isbn are indexes on the title, author and ISBN columns respectively, which can help speed up search queries.
 
