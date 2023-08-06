@@ -1,8 +1,8 @@
 # SQL Assignment README
 
 ## Introduction 
-This assignment focuses on managing a subscription service for Autodesk software. We have a table named 'tblSubscriptionInfo' that stores data about customer subscriptions, including customer information and subscription details.
-MySQL is installed on the system based on approriate operating system. https://dev.mysql.com/downloads/mysql/
+- This assignment focuses on managing a subscription service for Autodesk software. We have a table named 'tblSubscriptionInfo' that stores data about customer subscriptions, including customer information and subscription details.
+- MySQL is installed on the system based on approriate operating system. https://dev.mysql.com/downloads/mysql/
 
 ## Database Table :
 ```
