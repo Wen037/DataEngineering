@@ -53,6 +53,12 @@ To get the project up and running on your local machine, follow these steps:
 - Maven 3.6.3 or higher
 - Git
 
+## Built With
+Java
+Spring Boot - The web framework used
+Maven - Dependency Management
+MySQL - Database
+HikariCP - Lightweight JDBC connection pooling framework
 ### MySQL Setup
 
 Setup the MySQL database locally:
@@ -131,8 +137,4 @@ Created indexes in your database schema
 Optimize Queries by selecting specific columns and using prepared statements.
 The HikariCP connection pool is also used to manage database connections efficiently.
 
-## Built With
-Spring Boot - The web framework used
-Maven - Dependency Management
-MySQL - Database
-HikariCP - Lightweight JDBC connection pooling framework
+
