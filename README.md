@@ -5,6 +5,10 @@ This assignment focuses on managing a subscription service for Autodesk software
 MySQL is installed on the system based on approriate operating system. https://dev.mysql.com/downloads/mysql/
 
 ## Database Table :
+```
+CREATE DATABASE subscription_db;
+USE subscription_db;
+```
 The 'tblSubscriptionInfo' table is created using the following SQL query:
 
 ``` CREATE TABLE tblSubscriptionInfo
@@ -63,8 +67,8 @@ HikariCP - Lightweight JDBC connection pooling framework
 Setup the MySQL database locally:
 
 ```
-CREATE DATABASE bookstore;
-USE bookstore;
+CREATE DATABASE bookstore_db;
+USE bookstore_db;
 CREATE TABLE books (
 	id VARCHAR(50) PRIMARY KEY,
 	title VARCHAR(100),
