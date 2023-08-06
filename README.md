@@ -133,11 +133,12 @@ curl -X GET "http://localhost:8080/books/search?title=Test%20Book&author=Test%20
 This project employs the Singleton design pattern for the DBConnection class to ensure that only a single instance of the database connection is created and shared throughout the application.
 
 ## Error Handling and Logging
-Implemented a global exception handler to capture and log any exceptions or errors that occur during the execution of the system. SLF4J used for logging.
+- Implemented a global exception handler to capture and log any exceptions or errors that occur during the execution of the system.
+- SLF4J used for logging.
 
 ## Performance Optimization
-Created indexes in your database schema
-Optimize Queries by selecting specific columns and using prepared statements.
-The HikariCP connection pool is also used to manage database connections efficiently.
+- Created indexes in your database schema
+- Optimize Queries by selecting specific columns and using prepared statements.
+- The HikariCP connection pool is also used to manage database connections efficiently.
 
 
