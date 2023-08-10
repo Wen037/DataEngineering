@@ -57,11 +57,11 @@ To get the project up and running on your local machine, follow these steps:
 - Git
 
 ## Built With
-Java
-Spring Boot - The web framework used
-Maven - Dependency Management
-MySQL - Database
-HikariCP - Lightweight JDBC connection pooling framework
+- Java
+- Spring Boot - The web framework used
+- Maven - Dependency Management
+- MySQL - Database
+- HikariCP - Lightweight JDBC connection pooling framework
 ### MySQL Setup
 
 Setup the MySQL database locally:
