@@ -7,7 +7,8 @@ MySQL is installed on the system based on approriate operating system. https://d
 ## Database Table :
 The 'tblSubscriptionInfo' table is created using the following SQL query:
 
-``` CREATE TABLE tblSubscriptionInfo
+```
+ CREATE TABLE tblSubscriptionInfo
 (
   subscription_id INT,
   product_id INT,
