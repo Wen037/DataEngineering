@@ -1,5 +1,5 @@
-CREATE INDEX idx_customer_id
-ON tblSubscriptionInfo (customer_id);
+CREATE INDEX idx_customer_subscription_product
+ON tblSubscriptionInfo (customer_id, subscription_id, product_id);
 
 
 --Test update
