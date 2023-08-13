@@ -10,7 +10,7 @@ public class DBConnection {
     private static HikariDataSource ds;
 
     static {
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/bookstore");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/bookstore_db");
         config.setUsername("root");
         config.setPassword("root");
 

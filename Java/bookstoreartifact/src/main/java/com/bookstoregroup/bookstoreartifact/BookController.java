@@ -1,4 +1,3 @@
-
 package com.bookstoregroup.bookstoreartifact;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,56 +5,79 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
 
-	@Autowired
-	private BookService bookService;
+    @Autowired
+    private BookService bookService;
 
-	@PostMapping
-	public void addBook(@RequestBody Book book) {
-		bookService.addBook(book);
-	}
-
-	@DeleteMapping("/{id}")
-	public void removeBook(@PathVariable String id) {
-		bookService.removeBook(id);
-	}
-
-	@PutMapping("/{id}")
-	public void updateBookQuantity(@PathVariable String id, @RequestParam int quantity) {
-		bookService.updateBookQuantity(id, quantity);
-	}
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Integer> getBookQuantity(@PathVariable String id) {
+    @PostMapping
+    public ResponseEntity<String> addBook(@RequestBody Book book) {
         try {
-            int quantity = bookService.getBookQuantity(id);
-            return new ResponseEntity<>(quantity, HttpStatus.OK);
-        } catch (SQLException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            bookService.addBook(book);
+            return new ResponseEntity<>("Book added successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error adding book", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-	@GetMapping
-	public List<Book> getAllBooks() {
-		return bookService.getAllBooks();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> removeBook(@PathVariable String id) {
+        try {
+            bookService.removeBook(id);
+            return new ResponseEntity<>("Book removed successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error removing book", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateBookQuantity(@PathVariable String id, @RequestParam int quantity) {
+        try {
+            bookService.updateBookQuantity(id, quantity);
+            return new ResponseEntity<>("Book quantity updated successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error updating book quantity", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getBookQuantity(@PathVariable String id) {
+        try {
+            int quantity = bookService.getBookQuantity(id);
+            return new ResponseEntity<>(quantity, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error fetching book quantity", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Book>> getAllBooks() {
+        try {
+            List<Book> books = bookService.getAllBooks();
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/search")
-    public List<Book> searchBooks(
-        @RequestParam(required = false) String title,
-        @RequestParam(required = false) String author,
-        @RequestParam(required = false) String isbn,
-        @RequestParam(required = false) Double minPrice,
-        @RequestParam(required = false) Double maxPrice,
-        @RequestParam(required = false) Boolean available
+    public ResponseEntity<List<Book>> searchBooks(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String isbn,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) Boolean available
     ) {
-        return bookService.searchBooks(title, author, isbn, minPrice, maxPrice, available);
+        try {
+            List<Book> books = bookService.searchBooks(title, author, isbn, minPrice, maxPrice, available);
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

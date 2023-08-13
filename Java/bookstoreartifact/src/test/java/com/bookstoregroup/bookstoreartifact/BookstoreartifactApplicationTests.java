@@ -78,8 +78,9 @@ class BookstoreartifactApplicationTests {
 		mockMvc.perform(post("/books")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"id\": \"1\", \"title\": \"Test Book\", \"author\": \"Test Author\", \"isbn\": \"1234567890\", \"quantity\": 100, \"price\": 19.99, \"availability\": true}"))
-				.andExpect(status().isOk());
+				.andExpect(status().isCreated());  // Change this line
 	}
+	
 
 
 	@Test

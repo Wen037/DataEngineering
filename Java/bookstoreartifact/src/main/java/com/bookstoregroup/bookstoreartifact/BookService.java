@@ -23,7 +23,7 @@ public class BookService {
 		try {
 			this.connection = DBConnection.getConnection();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Error with connection: ", e);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class BookService {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.error("Error adding book: ", e);
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -53,7 +53,7 @@ public class BookService {
 			ps.executeUpdate();
 		} catch (SQLException e) {
             log.error("Error removing book: ", e);
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class BookService {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.error("Error updating book quantity: ", e);
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
     }
 
@@ -90,8 +90,7 @@ public class BookService {
             }
         } catch (SQLException e) {
             log.error("Error getting book quantity: ", e);
-            e.printStackTrace();
-            throw e;
+            throw new RuntimeException("Database error", e);
         }
     }
     
@@ -183,7 +182,7 @@ public List<Book> getAllBooks() {
             }
         } catch (SQLException e) {
             log.error("Error searching books: ", e);
-            e.printStackTrace();
+            throw new RuntimeException("Database error", e);
         }
         return books;
     }
