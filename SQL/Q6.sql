@@ -1,9 +1,11 @@
-SELECT table1.customer_id, table1.customer_name, table1.product_name AS old_product, table2.product_name AS new_product
-FROM tblSubscriptionInfo AS table1
-JOIN tblSubscriptionInfo AS table2
-    ON table1.customer_id = table2.customer_id
-    AND table2.product_id - table1.product_id < 100 AND table2.product_id - table1.product_id > 0
-WHERE YEAR(table2.subscription_start_date) = 2023;
+SELECT old_sub.customer_id,old_sub.customer_name,old_sub.product_name AS old_product, new_sub.product_name AS new_product
+FROM tblSubscriptionInfo as old_sub
+JOIN tblSubscriptionInfo AS new_sub
+ON old_sub.customer_id = new_sub.customer_id
+WHERE old_sub.product_id < new_sub.product_id 
+    AND CAST(old_sub.product_id /100 AS SIGNED) = CAST(new_sub.product_id /100 AS SIGNED)
+    AND YEAR(old_sub.subscription_end_date) = 2023 
+    AND YEAR(new_sub.subscription_start_date) = 2023;
 
 -- +--------------+
 --    ASSUMPTION
