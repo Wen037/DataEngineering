@@ -21,7 +21,7 @@ public class BookService {
 
 	public BookService() {
 		try {
-			this.connection = DBConnection.getConnection();
+			this.connection = DBConnection.getInstance().getConnection();
 		} catch (SQLException e) {
 			log.error("Error with connection: ", e);
 		}

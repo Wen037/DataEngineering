@@ -1,15 +1,17 @@
 package com.bookstoregroup.bookstoreartifact;
 
 import com.zaxxer.hikari.*;
+
 import java.sql.Connection;
-// import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static HikariConfig config = new HikariConfig();
-    private static HikariDataSource ds;
+    private HikariConfig config = new HikariConfig();
+    private HikariDataSource ds;
 
-    static {
+    private static DBConnection instance; // Singleton instance
+
+    private DBConnection() { // Private constructor
         config.setJdbcUrl("jdbc:mysql://localhost:3306/bookstore_db");
         config.setUsername("root");
         config.setPassword("root");
@@ -21,7 +23,16 @@ public class DBConnection {
         ds = new HikariDataSource(config);
     }
 
-    public static Connection getConnection() throws SQLException {
+    // Public method to provide access to the singleton instance
+    public static synchronized DBConnection getInstance() {
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+        return instance;
+    }
+
+    // This is now a non-static method
+    public Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
 }
