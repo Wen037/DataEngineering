@@ -11,7 +11,8 @@ USE subscription_db;
 ```
 The 'tblSubscriptionInfo' table is created using the following SQL query:
 
-``` CREATE TABLE tblSubscriptionInfo
+```
+CREATE TABLE tblSubscriptionInfo
 (
   subscription_id INT,
   product_id INT,
