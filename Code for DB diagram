@@ -1,0 +1,72 @@
+// Pre-seeded data
+Table role {
+  id int [primary key, not null]
+  name varchar [not null]
+}
+
+Table user {
+  id int [primary key, not null]
+  username varchar [not null]
+  role_id int [not null, ref: > role.id]
+  password varchar [not null]
+  created_at datetime [not null]
+}
+
+// Pre-seeded data
+Table location {
+  id int [primary key, not null]
+  name varchar [not null]
+}
+
+// Pre-seeded data
+Table item_state {
+  id int [primary key, not null]
+  state_name varchar [not null] // values: 'active', 'archived', 'deleted'
+}
+
+Table item {
+  id int [primary key]
+  name varchar [not null]
+  type varchar [not null]
+  condition varchar [not null]
+  quantity int [not null]
+  state_id int [not null, ref: > item_state.id]
+  location_id int [ref: > location.id]
+  model_id int [ref: > model.id]
+  created_at datetime [not null]
+  created_by int [not null, ref: - user.id]
+  updated_at datetime [not null]
+  updated_by int [not null, ref: - user.id]
+}
+
+Table model {
+  id int [primary key]
+  name varchar [not null]
+  alert_id int [not null, ref: - alerts.id]
+  created_at datetime [not null]
+  created_by int [not null, ref: - user.id]
+  updated_at datetime [not null]
+  updated_by int [not null, ref: - user.id]
+}
+
+Table alerts {
+  id int [primary key]
+  threshold real [not null]
+  updated_at datetime [not null]
+  updated_by int [not null, ref: - user.id]
+}
+
+Table transactions {
+  id int [primary key]
+  item_id int [ref: > item.id]
+  transaction_type varchar [not null] // 'add', 'update', 'delete', 'archive', 'restore'
+  transaction_date datetime [not null]
+  executed_by int [not null, ref: - user.id]
+}
+
+// View table to track quantity.
+// TBD if CRUD on base tables updates this view
+Table model_view {
+  model_id int [not null, ref: - model.id]
+  quantity int [not null]
+}
